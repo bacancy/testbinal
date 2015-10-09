@@ -1,0 +1,24 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<RenderingModel>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using Sitecore.Mvc.Presentation
+
+@{
+	var galleryClass = "image-gallery";
+}
+
+@if (Sitecore.Context.PageMode.IsPageEditor)
+{
+	galleryClass = "image-gallery-admin";
+}
+
+<div class="component @galleryClass">
+  <div class="gallery">
+    @if (IsInEditingMode)
+    {
+        <text>[Image Gallery]</text>
+    }
+    @Html.Sitecore().DynamicPlaceholder("image-gallery-item")
+  </div>
+  <div class="gallery-caption">Photo <span class="image-number">x</span> of <span class="total-images">y</span></div>
+</div>

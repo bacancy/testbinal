@@ -1,0 +1,12 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.LinkList.ILinkList>
+@using Sitecore.Mvc
+@using Sitecore.Support
+
+@* see /ui/content/LinkList *@
+
+<div class="component link-list">
+    <h1>@Editable(Model, x => x.Caption)</h1>
+    <ul>
+        @Html.Sitecore().DynamicPlaceholder("link-list-item")
+    </ul>
+</div>

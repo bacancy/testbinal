@@ -1,0 +1,12 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.ITextContentBlock>
+
+@* see /ui/content/TextContentBlock *@
+
+<div class="component text-content-block">
+    <h2>@Editable(Model, m => m.Caption)</h2>
+    <p>@Editable(Model, m => m.Content)</p>
+    @if (IsInEditingMode || Model.Link != null)
+    {
+        <p class="link">@this.RenderLink(Model, m => m.Link, isEditable: true)</p>
+    }
+</div>

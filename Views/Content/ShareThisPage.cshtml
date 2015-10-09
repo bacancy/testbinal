@@ -1,0 +1,9 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.ShareThisPage.IShareThisPage>
+@using Sitecore.Mvc
+
+<div class="component share-this-page">
+    <div class="share-this-page">@Editable(Model, x => x.Caption)</div>
+    <ul>
+        @Html.Sitecore().Placeholder("share-this-page")
+    </ul>
+</div>

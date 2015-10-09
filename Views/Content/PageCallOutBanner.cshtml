@@ -1,0 +1,25 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.IPageCallOutBanner>
+
+@* see /ui/content/PageCallOutBanner *@
+
+<div class="content wrapper">
+  <div class="component page-callout-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="group">
+          <div class="block width-forth">
+            <div class="inner">
+              @RenderImage(Model, x => x.Image, isEditable: true)
+            </div>
+          </div>
+          <div class="block width-3forths">
+            <div class="inner">
+              <h2>@Editable(Model, x => x.Caption)</h2>
+              <p>@Editable(Model, x => x.Description)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.DetailsTable.IDetailsTable>
+@using Sitecore.Mvc
+@using Sitecore.Support
+
+@* see /ui/content/DetailsTable *@
+
+<div class="component details-table">
+    <div class="table">
+        @if (IsInEditingMode || !string.IsNullOrWhiteSpace(Model.Caption) || !string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <div class="row header">
+                <div class="cell"><h1>@Editable(Model, x => x.Caption)</h1></div>
+                <div class="cell"><h2>@Editable(Model, x => x.Description)</h2></div>
+            </div>
+        }
+        <div class="row content">
+            <div class="cell full">
+                <p>@Editable(Model, x => x.Content)</p>
+            </div>
+        </div>
+        <div class="row details">
+            @Html.Sitecore().DynamicPlaceholder("details-table-item")
+        </div>
+    </div>
+</div>

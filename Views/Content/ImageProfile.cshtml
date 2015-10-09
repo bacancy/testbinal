@@ -1,0 +1,20 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.IImageProfile>
+
+@* see /ui/content/ImageProfile *@
+
+<div class="component image-profile">
+    <div class="group">
+        <div class="block width-third">
+            <div class="inner">
+                @RenderImage(Model, x => x.Image, isEditable: true)
+            </div>
+        </div>
+        <div class="block width-2thirds">
+            <div class="inner">
+                <h3 class="name">@Editable(Model, x => x.PName)</h3>
+                <div class="title">@Editable(Model, x => x.Title)</div>
+                <p class="description">@Editable(Model, x => x.Description)</p>
+            </div>
+        </div>
+    </div>
+</div>

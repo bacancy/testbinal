@@ -1,0 +1,17 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.IVideo>
+
+<div class="component videos">
+    @if (IsInEditingMode)
+    {
+        <text>Video Component<br /></text>
+        <text>URL: </text>
+        @Editable(Model, x => x.VideoUrl)
+    }
+    else
+    {
+        <div class="video-container">
+            <video id="video1" class="videoHolder video-js vjs-default-skin" width="auto" height="auto" data-yt="@Model.VideoUrl"></video>
+        </div>
+        @*<iframe class="youTube" src="@Model.VideoUrl" frameborder="0" allowfullscreen width="500" height="300"></iframe>*@
+    }
+</div>

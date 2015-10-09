@@ -1,0 +1,14 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.ShareThisPage.IShareThisPageItem>
+@using YMCA.WebUI.ExtensionMethods
+
+<li>
+    @if (IsInEditingMode)
+    {
+        @RenderImage(x => x.Image, isEditable: true)
+        @RenderLink(x => x.ShareToMediaURL, isEditable: true)
+    }
+    else
+    {
+        <a href="@Model.GetShareUrl()">@RenderImage(x => x.Image)</a>
+    }
+</li>

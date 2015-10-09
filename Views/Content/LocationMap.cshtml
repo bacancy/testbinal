@@ -1,0 +1,35 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.API.Centre>
+@using Sitecore.Mvc;
+@using Sitecore.Data.Items;
+
+@{
+    Item imageItem = Sitecore.Context.Database.GetItem("/sitecore/media library/YMCA/Images/Wireframes/calendar");
+    string imageUrl = Sitecore.StringUtil.EnsurePrefix('/', Sitecore.Resources.Media.MediaManager.GetMediaUrl(imageItem));
+}
+
+<div class="component location">
+    <div class="group">
+        <div class="block block-gmaps width-2thirds">
+            @RenderMap()
+        </div>
+        <div class="block width-third">
+            <address>
+                <p>
+                    @String.Join("<br />", Model.Location.Address)<br />
+                    @Model.Location.City, @Model.Location.Province<br />
+                    @Model.Location.PostCode
+                </p>
+            </address>
+            <p>
+                <strong>Parking:</strong> @(Model.Parking ? "Available on-site" : "Not available")
+            </p>
+            <p><a href="tel:@Model.ContactInfo.PhoneNumber"><img src="@imageUrl" class="icon-small" alt="phone">@Model.ContactInfo.PhoneNumber</a></p>
+            <p><a href="mailto:@Model.ContactInfo.Email"><img src="@imageUrl" class="icon-small" alt="email">@Model.ContactInfo.Email</a></p>
+        </div>
+    </div>
+</div>
+
+@helper RenderMap()
+{
+    Html.RenderPartial("../Shared/Map", Model.Location);
+}

@@ -1,0 +1,62 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.IContactUsMap>
+@using Sitecore.Mvc;
+
+<div class="component location">
+    <div class="group">
+        <div class="block block-gmaps width-2thirds">
+            @RenderMap()
+            @if (IsInEditingMode)
+            {
+                <text>Latitude:</text> @Editable(Model, x => x.Latitude)<br />
+                <text>Longitude:</text> @Editable(Model, x => x.Longitude)
+            }
+        </div>
+        <div class="block width-third">
+            <h2 class="location-data-heading">Mailing address</h2>
+            <address>
+                <p>@Editable(Model, x => x.Address, new { linebreaks = "<br/>" })</p>
+            </address>
+            <h2 class="location-data-heading">Telephone</h2>
+            <p>
+                @if (IsInEditingMode)
+                {
+                    @Editable(Model, x => x.Phone, new { linebreaks = "<br/>" })
+                }
+                else
+                {
+                    @RenderLinks(Model.Phone, "tel")
+                }
+            </p>
+            <h2 class="location-data-heading">Fax</h2>
+            <p>
+                @if (IsInEditingMode)
+                {
+                    @Editable(Model, x => x.Fax, new { linebreaks = "<br/>" })
+                }
+                else
+                {
+                    @RenderLinks(Model.Fax, "fax")
+                }
+            </p>
+        </div>
+    </div>
+</div>
+
+@helper RenderMap()
+{
+    Html.RenderPartial("Map", Model);
+}
+
+@helper RenderLinks(string multiLineText, string protocol)
+{
+    string[] values = multiLineText.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+    if (values.Length > 0)
+    {
+        <ul>
+            @foreach (var item in values)
+            {
+                <li><a href="@protocol:@item">@item</a></li>
+            }
+        </ul>
+    }
+}

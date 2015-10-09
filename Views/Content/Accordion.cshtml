@@ -1,0 +1,19 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.Accordion.IAccordion>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using YMCA.Domain.Models.Content.Accordion;
+
+@* see /ui/content/Accordion *@
+
+@{
+    var parameters = GetRenderingParameters<IAccordionParameters>();
+    string multiSelectableValue = (parameters.MultiSelect) ? "true" : "false";
+    var containerClass = IsInEditingMode ? String.Empty : "accordion-container";
+}
+
+<div class="component accordion">
+    <h2>@Editable(Model, x => x.Caption)</h2>
+    <div class="@containerClass" aria-multiselectable="@multiSelectableValue" data-accordion-type="accordion-outer">
+        @Html.Sitecore().DynamicPlaceholder("accordion-item")
+    </div>
+</div>

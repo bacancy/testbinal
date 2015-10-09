@@ -1,0 +1,12 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.INote>
+
+@* see /ui/content/Note *@
+
+<div class="component note">
+
+    @if (IsInEditingMode || (Model != null && !String.IsNullOrWhiteSpace(Model.Caption)))
+    {
+        <h1>@this.Editable(Model, x => x.Caption)</h1>
+    }
+    @Editable(Model, x => x.Content)
+</div>

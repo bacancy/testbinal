@@ -1,0 +1,23 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.ILinkBanner>
+
+<div class="content wrapper">
+  <div class="component link-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="group">
+          <div class="block width-forth">
+            <div class="inner">
+              @RenderImage(Model, x => x.Image, isEditable: true)
+            </div>
+          </div>
+          <div class="block width-3forths">
+            <div class="inner">
+              <h2>@RenderLink(Model, x => x.Link, isEditable: true)</h2>
+              @Editable(Model, x => x.Description)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

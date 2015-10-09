@@ -1,0 +1,14 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.IPhoto>
+
+@* see /ui/content/Photo *@
+
+<div class="component photo">
+    <div class="image-holder">
+        @RenderImage(Model, x => x.Image, isEditable: true)
+    </div>
+    <div class="image-caption-holder">
+        <div class="image-caption-copy">@Editable(Model, x => x.Caption)</div>
+        <div class="image-caption-credit">@Editable(Model, x => x.Credit)</div>
+        <div class="image-caption-date">@Editable(Model, x => x.Date, x => x.Date.ToString("dd/MM/yyyy"))</div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.LinkList.ILinkListItem>
+
+@* see /ui/content/LinkList *@
+
+<li class="@(Model.Image == null || Model.Image.MediaId == Guid.Empty ? "noImage" : "withImage")">
+    @if (IsInEditingMode)
+    {
+        @RenderImage(Model, x => x.Image, isEditable: true);
+        @RenderLink(Model, x => x.Link, isEditable: true);
+    }
+    else
+    {
+        using (BeginRenderLink(Model, x => x.Link))
+        {
+            if (Model.Image != null && Model.Image.MediaId != Guid.Empty)
+            {
+                <p></p>
+                @RenderImage(Model, x => x.Image);
+            }
+            else if (Model.Link != null)
+            {
+                @Model.Link.Text;
+            }
+        }
+    }
+</li>

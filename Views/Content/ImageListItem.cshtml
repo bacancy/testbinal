@@ -1,0 +1,19 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.IImageListItem>
+@using YMCA.WebUI.ExtensionMethods
+
+@* see /ui/content/ImageList *@
+
+<li>
+    @if (IsInEditingMode)
+    {
+        @(this.RenderImage(Model, x => x.Image, isEditable: true))
+        @(this.RenderLink(Model, x => x.Link, isEditable: true))
+    }
+    else
+    {
+        using (this.BeginRenderLink(Model, x => x.Link))
+        {
+            @(this.RenderImage(Model, x => x.Image))
+        }
+    }
+</li>

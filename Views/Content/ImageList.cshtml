@@ -1,0 +1,20 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<RenderingModel>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using Sitecore.Mvc.Presentation
+
+@* see /ui/content/ImageList *@
+
+@{
+    var placeholderName = "image-list-item_" + Html.Sitecore().CurrentRendering.UniqueId.ToString();
+}
+
+<div class="component image-list">
+    @if (IsInEditingMode && !YMCA_GTAhelper.DoChildrenExist(placeholderName))
+    {
+        <text>[Image List]</text>
+    }
+    <ul>
+        @Html.Sitecore().DynamicPlaceholder("image-list-item")
+    </ul>
+</div>

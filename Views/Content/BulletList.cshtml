@@ -1,0 +1,18 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.IBulletList>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using YMCA.WebUI.ExtensionMethods
+
+@{
+    var placeholderName = "bullet-list-level-one_" + Html.Sitecore().CurrentRendering.UniqueId.ToString();
+    var childrenExist = YMCA_GTAhelper.DoChildrenExist(placeholderName);
+}
+
+@* see /ui/content/BulletList *@
+<div class="component bullet-list">
+    <h1>@Editable(Model, x => x.Text)</h1>
+    @BulletListHelper.WriteListOpenTag(Html, childrenExist)
+    @Editable(Model, x => x.Description)
+    @Html.Sitecore().DynamicPlaceholder("bullet-list-level-one")
+    @BulletListHelper.WriteListCloseTag(Html, childrenExist)
+</div>

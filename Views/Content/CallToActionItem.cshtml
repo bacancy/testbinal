@@ -1,0 +1,22 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.CallToActionBlock.ICallToActionItem>
+
+@* see /ui/content/CallToActionBlock *@
+
+<div>
+    @if (Model.Link == null)
+    {
+        if (IsInEditingMode)
+        {
+            @RenderLink(Model, x => x.Link, isEditable: true)
+        }
+        @RenderImage(Model, x => x.Image, isEditable: true)
+    }
+    else
+    {
+        using (BeginRenderLink(Model, x => x.Link, isEditable: true))
+        {
+            @RenderImage(Model, x => x.Image, isEditable: true)
+            <span>@Model.Link.Text</span>
+        }
+    }
+</div>

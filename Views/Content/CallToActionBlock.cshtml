@@ -1,0 +1,29 @@
+﻿@inherits DefaultValuesGlassView<ICallToActionBlock>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using YMCA.Domain.Models.Content.CallToActionBlock
+
+@* see /ui/content/CallToActionBlock *@
+
+@{
+    var parameters = GetRenderingParameters<ICallToActionBlockParameters>();
+    string alternativeStyleClass = (parameters.AlternativeStyle) ? "alternative-style" : String.Empty;
+}
+
+<div class="component call-to-action-block @alternativeStyleClass">
+    <div class="call-to-action-block-copy">
+        <h1>@Editable(Model, x => x.Caption)</h1>
+        <p>@Editable(Model, x => x.Description)</p>
+
+        @Html.Sitecore().DynamicPlaceholder("call-to-action-subsection")
+        @if (IsInEditingMode || Model.LinkToContent != null)
+        {
+            @(RenderLink(Model, x => x.LinkToContent, new System.Collections.Specialized.NameValueCollection { { "class", "cta-link" } }, isEditable: true))
+        }
+
+        @if (IsInEditingMode || Model.CallToAction != null)
+        {
+            @(RenderLink(Model, x => x.CallToAction, new System.Collections.Specialized.NameValueCollection { { "class", "button-link" } }, isEditable: true))
+        }
+    </div>
+</div>

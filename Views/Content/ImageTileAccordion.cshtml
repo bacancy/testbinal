@@ -1,0 +1,14 @@
+@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.ImageTileAccordion.IImageTileAccordion>
+@using Sitecore.Mvc
+@using Sitecore.Support
+
+@{
+    var containerClass = IsInEditingMode ? String.Empty : "accordion-container";
+}
+
+<div class="component accordion">
+    <h2>@Editable(Model, x => x.Caption)</h2>
+    <div class="@containerClass" aria-multiselectable="false" data-accordion-type="accordion-image-tile">
+        @Html.Sitecore().DynamicPlaceholder("image-tile-accordion-item")
+    </div>
+</div>

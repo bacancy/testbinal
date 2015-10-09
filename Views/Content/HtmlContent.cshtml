@@ -1,0 +1,6 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.IHtmlContent>
+@using YMCA.WebUI.ExtensionMethods
+
+<div class="component html-content">
+    @Editable(Model, x => x.Content)
+</div>

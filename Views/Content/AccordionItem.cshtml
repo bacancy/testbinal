@@ -1,0 +1,38 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.Accordion.IAccordionItem>
+@using Sitecore.Mvc
+@using Sitecore.Support
+@using YMCA.Domain.Models.Content.Accordion;
+
+@* see /ui/content/Accordion *@
+
+@{
+    var parameters = GetRenderingParameters<IAccordionItemParameters>();
+    string openOnLoadValue = (parameters.OpenOnLoad) ? "true" : "false";
+}
+
+<div class="accordion-heading" data-open-on-load="@openOnLoadValue">
+    @Editable(Model, x => x.Caption)
+</div>
+<div class="accordion-body">
+    <p>@Editable(Model, x => x.Content)</p>
+    <ul>
+        @Html.Sitecore().DynamicPlaceholder("accordion-item-list")
+    </ul>
+
+    @RenderImage(Model, x => x.Image, isEditable: true)
+
+    <ul>
+        @Html.Sitecore().DynamicPlaceholder("accordion-item-links")
+    </ul>
+
+    <p>@Editable(Model, x => x.Content2)</p>
+
+    @if (IsInEditingMode || Model.Link != null)
+    {
+        <p>@RenderLink(Model, x => x.Link, isEditable: true)</p>
+    }
+    @if (IsInEditingMode || Model.CallToAction != null)
+    {
+        @(RenderLink(Model, x => x.CallToAction, new System.Collections.Specialized.NameValueCollection { { "class", "button-link" } }, isEditable: true))
+    }
+</div>

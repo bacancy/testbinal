@@ -1,0 +1,48 @@
+@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.ImageTileAccordion.IImageTileAccordionItem>
+
+@{
+    var headingClass = IsInEditingMode ? String.Empty : "accordion-heading";
+    var bodyClass = IsInEditingMode ? String.Empty : "accordion-body";
+}
+
+<div class="@headingClass" data-open-on-load="false">
+    <div class="inner">
+        @RenderImage(Model, x => x.TileImage, isEditable: true)
+        <div><span>@Editable(Model, x => x.TileCaption)</span></div>
+    </div>
+</div>
+<div class="@bodyClass">
+    <div class="open-marker"></div>
+    <div class="inner">
+        @if (!IsInEditingMode)
+        {
+            <button class="button-icon accordion-close"><span class="icon-accordion-close">Close</span></button>
+        }
+        <h2>@Editable(Model, x => x.FlyOutCaption)</h2>
+        <h3>@Editable(Model, x => x.FlyOutSubtitle)</h3>
+        <p>@Editable(Model, x => x.FlyOutDescription)</p>
+        @RenderImage(Model, x => x.FlyOutImage, isEditable: true)
+        <p>@Editable(Model, x => x.FlyOutDescription2)</p>
+        @if (IsInEditingMode || !String.IsNullOrWhiteSpace(Model.FlyOutContactName))
+        {
+            <span>For more information contact <strong>@Editable(Model, x => x.FlyOutContactName)</strong></span>
+        }
+        @if (IsInEditingMode || !String.IsNullOrWhiteSpace(Model.FlyOutContactPhone))
+        {
+            <span>[phone image] @Editable(Model, x => x.FlyOutContactPhone)</span>
+        }
+        @if (IsInEditingMode || !String.IsNullOrWhiteSpace(Model.FlyOutContactEmail))
+        {
+            <span>[email image] <a href="mailto:@Model.FlyOutContactEmail">@Editable(Model, x => x.FlyOutContactEmail)</a></span>
+        }
+        @if (IsInEditingMode || (Model.FlyOutCallToActionImage != null && Model.FlyOutCallToActionImage.MediaId != Guid.Empty))
+        {
+            @RenderImage(Model, x => x.FlyOutCallToActionImage, isEditable: true)
+            <span>@RenderLink(Model, x => x.FlyOutCallToAction, isEditable: true)</span>
+        }
+        else
+        {
+            <span>@RenderLink(Model, x => x.FlyOutCallToAction, isEditable: true)</span>
+        }
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.IContactUsOperationHours>
+
+<div>
+    @if (IsInEditingMode)
+    {
+        <p>@Editable(Model, x => x.Description)</p>
+    }
+    else
+    {
+        <p>@Editable(Model, x => x.Description)</p>
+    }
+</div>

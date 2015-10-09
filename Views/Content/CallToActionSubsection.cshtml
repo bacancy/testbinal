@@ -1,0 +1,10 @@
+﻿@inherits DefaultValuesGlassView<YMCA.Domain.Models.Content.CallToActionBlock.ICallToActionSubsection>
+@using Sitecore.Mvc
+@using Sitecore.Support
+
+@* see /ui/content/CallToActionBlock *@
+
+<h2>@Editable(Model, x => x.Caption)</h2>
+<div class="call-to-action-block-items">
+    @Html.Sitecore().DynamicPlaceholder("call-to-action-item")
+</div>

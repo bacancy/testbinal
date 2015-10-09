@@ -1,0 +1,8 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<YMCA.Domain.Models.Content.DetailsTable.IDetailsTableItem>
+
+@* see /ui/content/DetailsTable *@
+
+<div class="cell">
+    <h3>@Editable(Model, x => x.Caption)</h3>
+    <p>@Editable(Model, x => x.Content)</p>
+</div>
